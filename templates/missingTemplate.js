@@ -1,6 +1,6 @@
 const htmlSkeleton = require('./htmlSkeleton');
 
-function missing() {
+function missing(req,res) {
     return htmlSkeleton(
       // Redirect Parameter
       `<a href='/'><h2 class='error-subtitle'>Go back home!</h2></a>`,

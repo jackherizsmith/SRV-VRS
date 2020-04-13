@@ -14,7 +14,7 @@ function printTools(tools) {
         }
         return `
         <article id="tool_${tool.id}" class="tool-card"> 
-                <h2 class="tool-card__name"><a href="https://www.${tool.tool_link}">${tool.tool_name}</a></h2>
+                <p class="tool-card__name"><a href="https://www.${tool.tool_link}" target="">${tool.tool_name}</a></h2>
                 <p class="tool-card__user">Added by: ${tool.username}</p>
                 <p class="tool-card__desc">What is it: ${tool.tool_description}</p>
                 <p class="tool-card__category">Category: ${tool.category}</p>
@@ -25,14 +25,14 @@ function printTools(tools) {
     .join('')
 }
 
-function home(tools) {
+function home(req,res) {
     return htmlSkeleton(
         // Redirect Parameter
-
-        `<h2 class="home-description">A collection of tools to help you survive social distancing!</h2>`,
+        `<h2 class="home-description">A collection of tools to help you survive social distancing.</h2>
+        <a class="nav-button" href='/add'>Add a tool</a>`,
         // Content Parameter
         `
-        <p class="home-filter-description">Select a category to filter the results:</p>
+        <p class="filter-description">Select a category to filter the results:</p>
         <div id="categoryIcon" class="cat">
         <a class="cat__filter">Work</a>
         <a class="cat__filter">Social</i></a>
@@ -40,7 +40,7 @@ function home(tools) {
         <a class="cat__filter">Health</i></a>
         <a class="cat__filter">News</i></a>
         </div>
-        ${printTools(tools)}`,
+        ${printTools(req.tools)}`,
     )
 }
 

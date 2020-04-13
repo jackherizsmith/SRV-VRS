@@ -8,7 +8,8 @@ const missingHandler = require('./missingHandler');
 function homeHandler(req, res) {
     getTools()
      .then(tools => {
-        const html = homeTemplate(tools);
+        req.tools=tools;
+        const html = homeTemplate(req,res);
         res.send(html)
      })
      .catch(error => {

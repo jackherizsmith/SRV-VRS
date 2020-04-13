@@ -9,6 +9,10 @@ const checkAuth = require('./middleware/checkAuth');
 const handleErrors = require('./middleware/handleErrors');
 
 const homeHandler = require('./handlers/homeHandler');
+const addPageHandler = require('./handlers/addPageHandler');
+const signinHandler = require('./handlers/signinPageHandler');
+const signupHandler = require('./handlers/signupPageHandler');
+const missingHandler = require('./handlers/missingHandler');
 
 const PORT = process.env.PORT || 3000;
 const SECRET = 'survivethevirus'
@@ -21,34 +25,22 @@ server.use(logger);
 server.use(getUser);
 
 server.get("/", homeHandler);
-server.get("/delete-post", (req, res) => {
-    // delete card, probably : to identify which
-});
-//could add some filtering routes
-server.get("/add", checkAuth, (req, res) => {
-    // add tool page - must be signed in
-});
+server.get("/add", addPageHandler);
 server.post("/create-tool", (req, res) => {
     // verify token and post with tool data - redirect
 });
-server.get("/signin", (req, res) => {
-    // signin page
-});
+server.get("/signin", signinHandler);
 server.post("/signin", (req, res) => {
     // signin post and redirect and token creation
 });
-server.get("/signup", (req, res) => {
-    // signup page
-});
+server.get("/signup", signupHandler);
 server.post("/signup", (req, res) => {
     // signup post and redirect and token creation
 });
 server.get("/signout", (req, res) => {
     // clear cookie, redirect
 });
-server.use((req, res, next) => {
-    // 404 page since no other page responded
-})
+server.get("/:missing", missingHandler)
 
 server.use(express.static("/public"));
 server.use(handleErrors);
