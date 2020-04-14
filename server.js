@@ -17,7 +17,6 @@ const signoutHandler = require('./handlers/signoutHandler');
 const missingHandler = require('./handlers/missingHandler');
 
 const PORT = process.env.PORT || 3000;
-const SECRET = 'survivethevirus'
 
 const server = express();
 
@@ -36,9 +35,9 @@ server.get("/signup", signupHandler);
 server.post("/signup", signupPostHandler);
 
 server.get("/signout", signoutHandler);
-server.get("/:missing", missingHandler)
+server.use(express.static("public"));
 
-server.use(express.static("/public"));
+server.get("/:missing", missingHandler)
 server.use(handleErrors);
 
 server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
