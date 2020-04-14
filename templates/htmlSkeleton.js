@@ -8,7 +8,7 @@ function htmlSkeleton(req, res) {
         <title>Survive the virus</title>
         <link rel='shortcut icon' href='https://ps.w.org/covid-19/assets/icon.svg?rev=2262770' type='image/x-icon'> 
         <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans&display=swap" rel="stylesheet">
-        <!-- <link rel="stylesheet" href="/style.css"> -->
+        <link href="/style.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;800&display=swap" rel="stylesheet">
       </head>
       <body>

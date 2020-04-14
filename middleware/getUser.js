@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
 
 function getUser(req, res, next){
-    const token = req.cookies;
-    if (token.user) {
-      const user = jwt.verify(token.uer, SECRET);
+    const token = req.cookies.user;
+    if (token) {
+      const user = jwt.verify(token, SECRET);
       req.user = user;
     }
     next();
