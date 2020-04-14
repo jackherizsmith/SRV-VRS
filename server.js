@@ -1,7 +1,5 @@
 const express = require('express');
 const cookie = require('cookie-parser');
-const jwt = require('jsonwebtoken');
-const { STATUS_CODES } = require("http");
 
 const logger = require('./middleware/logger');
 const getUser = require('./middleware/getUser');
@@ -10,8 +8,12 @@ const handleErrors = require('./middleware/handleErrors');
 
 const homeHandler = require('./handlers/homeHandler');
 const addPageHandler = require('./handlers/addPageHandler');
-const signinHandler = require('./handlers/signinPageHandler');
+const addToolHandler = require('./handlers/addToolHandler');
 const signupHandler = require('./handlers/signupPageHandler');
+const signupPostHandler = require('./handlers/signupPostHandler');
+const signinHandler = require('./handlers/signinPageHandler');
+const signinPostHandler = require('./handlers/signinPostHandler');
+const signoutHandler = require('./handlers/signoutHandler');
 const missingHandler = require('./handlers/missingHandler');
 
 const PORT = process.env.PORT || 3000;
@@ -26,20 +28,14 @@ server.use(getUser);
 
 server.get("/", homeHandler);
 server.get("/add", addPageHandler);
-server.post("/create-tool", (req, res) => {
-    // verify token and post with tool data - redirect
-});
+server.post("/create-tool", addToolHandler);
 server.get("/signin", signinHandler);
-server.post("/signin", (req, res) => {
-    // signin post and redirect and token creation
-});
+server.post("/signin", signinPostHandler);
+
 server.get("/signup", signupHandler);
-server.post("/signup", (req, res) => {
-    // signup post and redirect and token creation
-});
-server.get("/signout", (req, res) => {
-    // clear cookie, redirect
-});
+server.post("/signup", signupPostHandler);
+
+server.get("/signout", signoutHandler);
 server.get("/:missing", missingHandler)
 
 server.use(express.static("/public"));

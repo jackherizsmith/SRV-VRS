@@ -3,11 +3,11 @@ const missingHandler = require('./missingHandler');
 
 
 function addPageHandler(req, res) {
-    const html = addPageTemplate()
+    const html = addPageTemplate(req,res)
     res.send(html)
     res.on('error', error => {
       console.error(error)
-      missingHandler(request, response)
+      missingHandler(req, res)
     })
 }
 

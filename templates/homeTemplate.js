@@ -6,13 +6,13 @@ function printTools(tools) {
         let deleteButton = '';
         let currentuser = false;
         if (currentuser === tool.username) {
-            deleteButton = `<a class="post__remove-button"
-            aria-label="button to remove post"
-            href="/delete-post?id=${tool.id}">
-            delet ME!!!
-            </a>`
+            deleteButton = /*html*/`
+                <a  class="post__remove-button" 
+                    aria-label="button to remove post"
+                    href="/delete-post?id=${tool.id}">Delete my post
+                </a>`
         }
-        return `
+        return /*html*/`
         <article id="tool_${tool.id}" class="tool-card"> 
                 <p class="tool-card__name"><a href="https://www.${tool.tool_link}" target="">${tool.tool_name}</a></h2>
                 <p class="tool-card__user">Added by: ${tool.username}</p>
@@ -26,22 +26,21 @@ function printTools(tools) {
 }
 
 function home(req,res) {
-    return htmlSkeleton(
-        // Redirect Parameter
-        `<h2 class="home-description">A collection of tools to help you survive social distancing.</h2>
-        <a class="nav-button" href='/add'>Add a tool</a>`,
-        // Content Parameter
-        `
+    req.nav = /*html*/`
+        <h2 class="home-description">A collection of tools to help you survive social distancing.</h2>
+        <a class="nav-button" href="/add">Add a tool</a>`;
+    
+    req.page = /*html*/`
         <p class="filter-description">Select a category to filter the results:</p>
         <div id="categoryIcon" class="cat">
-        <a class="cat__filter">Work</a>
-        <a class="cat__filter">Social</i></a>
-        <a class="cat__filter">Entertainment</i></a>
-        <a class="cat__filter">Health</i></a>
-        <a class="cat__filter">News</i></a>
+            <a class="cat__filter">Work</a>
+            <a class="cat__filter">Social</i></a>
+            <a class="cat__filter">Entertainment</i></a>
+            <a class="cat__filter">Health</i></a>
+            <a class="cat__filter">News</i></a>
         </div>
-        ${printTools(req.tools)}`,
-    )
+        ${printTools(req.tools)}`
+    return htmlSkeleton(req, res);
 }
 
 module.exports = home;

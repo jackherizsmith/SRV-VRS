@@ -1,11 +1,10 @@
 const htmlSkeleton = require('./htmlSkeleton');
 
 function missing(req,res) {
-    return htmlSkeleton(
-      // Redirect Parameter
-      `<a href='/'><h2 class='error-subtitle'>Go back home!</h2></a>`,
-      // Content Parameter
-      `<h1 class="error-title">Content Not Found</h1>`)
+  req.nav = /*html*/`<a href='/'><h2 class='error-subtitle'>Go back home!</h2></a>`;
+  req.page = /*html*/`<h1 class="error-title">Content Not Found</h1>`;
+  
+  return htmlSkeleton(req, res)
 }
 
 module.exports = missing;

@@ -8,7 +8,7 @@ const missingHandler = require('./missingHandler');
 function homeHandler(req, res) {
     getTools()
      .then(tools => {
-        req.tools=tools;
+        req.tools = tools;
         const html = homeTemplate(req,res);
         res.send(html)
      })
