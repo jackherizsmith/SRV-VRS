@@ -1,9 +1,9 @@
 const htmlSkeleton = require('./htmlSkeleton');
 
-function addPage(req,res) {
+function addTool(req,res) {
   req.nav = /*html*/`<h2 class="addTool-description">Share what you love with people who need it.</h2><a class="nav-button" href="/">Go back home</a>`;
   req.page = /*html*/`
-    <form action="create-tool" method="POST">
+    <form action="add" method="POST">
       <fieldset>
         <legend>Category:</legend>
         <label class="radio-label" for="work">Work</label>
@@ -31,10 +31,10 @@ function addPage(req,res) {
       <label class='user-info-label' for="tool_link">Link https://www.</label>
       <input class="user-info" id="tool_link" name="tool_link" placeholder="google.com" required>
       
-      <button class="post-tool-button" type="submit">Post tool</button>
+      <button class="post-tool-button" type="submit">Add tool</button>
     </form>`;
   
   return htmlSkeleton(req, res)
 }
 
-module.exports = addPage;
+module.exports = addTool;

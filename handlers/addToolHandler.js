@@ -1,20 +1,14 @@
-const jwt = require('jsonwebtoken');
-const createTool = require('../database/models/createTool')
+const addToolTemplate = require('../templates/addToolTemplate')
+const missingHandler = require('./missingHandler');
 
 
 function addToolHandler(req, res) {
-    jwt.verify(req.cookies.token, 'survivethevirus',(err, decoded) => {
-        tool = req.body;
-        tool.username = decoded.username;
+    const html = addToolTemplate(req,res)
+    res.send(html)
+    res.on('error', error => {
+      console.error(error)
+      missingHandler(req, res)
     })
-    createTool(tool)
-        .then(() => {
-          res.redirect('/')
-        })
-        .catch(error => {
-          console.log(error)
-          res.status(502).send(`<h1>Something went wrong saving your data</h1>`)
-        })
 }
 
 module.exports = addToolHandler;
