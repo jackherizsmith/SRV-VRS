@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
-const createTool = require('../database/models/createTool')
+const jwt = require("jsonwebtoken");
+const createTool = require("../database/models/createTool")
 
 
 function addToolPostHandler(req, res) {
@@ -8,11 +8,11 @@ function addToolPostHandler(req, res) {
   tool.date = new Date();
     createTool(tool)
         .then(() => {
-          res.redirect('/')
+          res.redirect("/")
         })
         .catch(error => {
           console.log(error)
-          res.status(502).send(`<h1>Something went wrong saving your data</h1>`)
+          res.status(502).send("<h1>Something went wrong saving your data</h1>")
         })
 }
 

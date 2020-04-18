@@ -2,7 +2,7 @@ const getTools = require('../database/models/getTools');
 
 const homeTemplate = require('../templates/homeTemplate');
 
-const missingHandler = require('./missingHandler');
+const missingHandler = require("./missingHandler");
 
 
 function homeHandler(req, res) {

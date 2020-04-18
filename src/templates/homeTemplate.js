@@ -1,7 +1,7 @@
-const htmlSkeleton = require('./htmlSkeleton');
+const htmlSkeleton = require("./htmlSkeleton");
 
 function printTools(tools) {
-    let options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+    let options = { weekday: "short", year: "numeric", month: "short", day: "numeric" };
     return tools
      .map(tool => {
          console.log(tools.username, tool.username)

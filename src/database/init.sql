@@ -44,6 +44,6 @@ INSERT INTO posts (user_id, cat_id, tool_name, tool_description, tool_link, date
 (1,4,'Headspace','Stress relief, breath and relax with us','headspace.com/', '2020-02-01'),
 (2,2,'WhatsApp','Speak to friends and family online','whatsapp.com', '2019-09-26'),
 (3,1,'Zoom','Video conferencing with team','zoom.com', '2019-12-09'),
-(1,3, 'Steam', 'Buy and play multiplayer games line overcooked', 'steam.com', '2019-12-09');
+(1,3, 'Steam', 'Buy and play multiplayer games', 'steam.com', '2019-12-09');
 
-COMMIT;
+END;

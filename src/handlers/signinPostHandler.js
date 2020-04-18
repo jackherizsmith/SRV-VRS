@@ -1,6 +1,7 @@
-const bcrypt = require('bcryptjs');
-const getPassword = require('../database/models/getPassword');
-const jwt = require('jsonwebtoken');
+const bcrypt = require("bcryptjs");
+const getPassword = require("../database/models/getPassword");
+const jwt = require("jsonwebtoken");
+const signinPageHandler = require("./signinPageHandler")
 const SECRET = process.env.JWT_SECRET;
 
 function signinPostHandler(req, res) {
@@ -10,7 +11,9 @@ function signinPostHandler(req, res) {
      .then(dbPassword => bcrypt.compare(user.password, dbPassword))
      .then(match => {
         if (!match) {
-            res.status(402).send(`<h1>Something went wrong logging in</h1>`)
+            req.badPassword = true;
+            const html = signinPageHandler(req,res);
+            res.status(402).send(html)
         } else {
             const payload = { username }
             token = jwt.sign(payload, SECRET)
@@ -20,7 +23,7 @@ function signinPostHandler(req, res) {
      })
      .catch(error => {
         console.log(error)
-        res.status(502).send(`<h1>You failed to sign up</h1>`)
+        res.status(502).send('<h1>You failed to sign up</h1>')
     }) 
 }
 
