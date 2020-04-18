@@ -1,7 +1,5 @@
 const express = require('express');
 const cookie = require('cookie-parser');
-const jwt = require('jsonwebtoken');
-const { STATUS_CODES } = require("http");
 
 const logger = require('./middleware/logger');
 const getUser = require('./middleware/getUser');
@@ -9,9 +7,16 @@ const checkAuth = require('./middleware/checkAuth');
 const handleErrors = require('./middleware/handleErrors');
 
 const homeHandler = require('./handlers/homeHandler');
+const addToolHandler = require('./handlers/addToolHandler');
+const addToolPostHandler = require('./handlers/addToolPostHandler');
+const signupHandler = require('./handlers/signupPageHandler');
+const signupPostHandler = require('./handlers/signupPostHandler');
+const signinHandler = require('./handlers/signinPageHandler');
+const signinPostHandler = require('./handlers/signinPostHandler');
+const signoutHandler = require('./handlers/signoutHandler');
+const missingHandler = require('./handlers/missingHandler');
 
 const PORT = process.env.PORT || 3000;
-const SECRET = 'survivethevirus'
 
 const server = express();
 
@@ -21,36 +26,20 @@ server.use(logger);
 server.use(getUser);
 
 server.get("/", homeHandler);
-server.get("/delete-post", (req, res) => {
-    // delete card, probably : to identify which
-});
-//could add some filtering routes
-server.get("/add", checkAuth, (req, res) => {
-    // add tool page - must be signed in
-});
-server.post("/create-tool", (req, res) => {
-    // verify token and post with tool data - redirect
-});
-server.get("/signin", (req, res) => {
-    // signin page
-});
-server.post("/signin", (req, res) => {
-    // signin post and redirect and token creation
-});
-server.get("/signup", (req, res) => {
-    // signup page
-});
-server.post("/signup", (req, res) => {
-    // signup post and redirect and token creation
-});
-server.get("/signout", (req, res) => {
-    // clear cookie, redirect
-});
-server.use((req, res, next) => {
-    // 404 page since no other page responded
-})
 
-server.use(express.static("/public"));
+server.get("/signup", signupHandler);
+server.post("/signup", signupPostHandler);
+
+server.get("/signin", signinHandler);
+server.post("/signin", signinPostHandler);
+
+server.get("/add", checkAuth, addToolHandler);
+server.post("/add", checkAuth, addToolPostHandler);
+
+server.get("/signout", signoutHandler);
+server.use(express.static("public"));
+
+server.get("/:missing", missingHandler)
 server.use(handleErrors);
 
 server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));

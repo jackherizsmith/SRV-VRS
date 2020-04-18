@@ -1,3 +1,4 @@
+const db = require('../connection')
 const getUser = require('./getUser');
 
 function createUser(data) {
