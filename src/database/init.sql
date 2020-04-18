@@ -4,7 +4,8 @@ DROP TABLE IF EXISTS users, categories, posts;
 
 CREATE TABLE users(
   id SERIAL PRIMARY KEY UNIQUE,
-  username VARCHAR(255) NOT NULL UNIQUE,         
+  username VARCHAR(255) NOT NULL UNIQUE,
+  email VARCHAR(255) NOT NULL UNIQUE,
   password VARCHAR(255)       
 );
 
@@ -23,10 +24,10 @@ CREATE TABLE posts(
   date_added DATE
 );
 
-INSERT INTO users (username, password) VALUES
-('bart', '$2a$10$3o1gWWmdF26nl4YlfpMSq.87wAMJySVHFJRvh4Dauyq0Wm4qpMIsC'),
-('lisa', '$2a$10$0CRhnF4HIKsbQZk/kCto3uZ9IbEXQR5ZoUwrxJ6Kl/odwwj1deSMq'),
-('maggie', '$2a$10$qbFBwGJhkbFbJGqv4aKca.bY0lCai5ttTtPJrATeVrQIZochJgy/u');
+INSERT INTO users (username, email, password) VALUES
+('bart', 'bart@simpsons.com', '$2a$10$3o1gWWmdF26nl4YlfpMSq.87wAMJySVHFJRvh4Dauyq0Wm4qpMIsC'),
+('lisa', 'lisa@simpsons.com', '$2a$10$0CRhnF4HIKsbQZk/kCto3uZ9IbEXQR5ZoUwrxJ6Kl/odwwj1deSMq'),
+('maggie', 'maggie@simpsons.com', '$2a$10$qbFBwGJhkbFbJGqv4aKca.bY0lCai5ttTtPJrATeVrQIZochJgy/u');
 
 INSERT INTO categories (category) VALUES
 ('Work'),

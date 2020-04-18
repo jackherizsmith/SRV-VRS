@@ -4,7 +4,6 @@ function printTools(tools) {
     let options = { weekday: "short", year: "numeric", month: "short", day: "numeric" };
     return tools
      .map(tool => {
-         console.log(tools.username, tool.username)
         let deleteButton = '';
         let date = tool.date_added;
         if (tools.username === tool.username) {

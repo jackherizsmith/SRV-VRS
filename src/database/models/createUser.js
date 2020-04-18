@@ -4,9 +4,10 @@ const getUser = require("./getUser");
 function createUser(user) {
     return getUser(user.username).then(userArray => {
       if (userArray.length == 0) {
-        return db.query('INSERT INTO users(username, password) VALUES($1, $2)', [
+        return db.query('INSERT INTO users(username, email, password) VALUES($1, $2, $3)', [
           user.username,
-          user.password,
+          user.email,
+          user.password
         ])
       }
     })

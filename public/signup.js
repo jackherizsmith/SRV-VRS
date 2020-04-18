@@ -1,7 +1,7 @@
 const form = document.querySelector("form");
-const inputs = form.querySelectorAll("input");
+const inputs = form.querySelectorAll("form__input");
 
-const nameInput = form.querySelector("#name");
+const nameInput = form.querySelector("#username");
 const nameRegex = /^[a-zA-Z-.' ]{2,}$/;
 
 const emailInput = form.querySelector("#email");
@@ -13,13 +13,13 @@ const passTime = document.querySelector("#passwordTime");
 passTime.textContent = "Your password should take an experienced hacker longer than 4 months to crack."
 
 let valid = {
-  name: false, 
+  username: false, 
   email: false, 
   password: false,
 }
 
 const errorMessage = {
-  name: "Check your name doesn't contain odd characters",
+  username: "Check your name doesn't contain odd characters",
   email: "This needs to include an @ and domain",
   password: "Try adding an unusual word",
 }
@@ -51,7 +51,7 @@ function validate(input, test){
 }
 
 nameInput.addEventListener("input", () => {
-  valid.name = validate(nameInput, nameRegex.test(nameInput.value));
+  valid.username = validate(nameInput, nameRegex.test(nameInput.value));
 });
 
 emailInput.addEventListener("input", () => {
@@ -60,7 +60,7 @@ emailInput.addEventListener("input", () => {
 
 passwordInput.addEventListener("input", () => {
   let userInputs = [], result;
-  inputs.forEach(input => userInputs = userInputs.concat(input.value.split(/[^0-9a-z]/gi)))
+  inputs.forEach(input => userInputs = userInputs.concat(input.value.split(/[^0-9a-z]/gi))) // grab other user inputs to improve password strength
   
   result = zxcvbn(passwordInput.value, user_inputs = userInputs.slice(0,-1));
   passStrength(result.guesses_log10);
@@ -73,7 +73,7 @@ passwordInput.addEventListener("input", () => {
 });
 
 function passStrength(log) {
-    const elem = document.querySelector(".password__score");
+    const elem = document.querySelector(".form__password-score");
     let width = log * 10; // 10^10 is very strong 4/4 therefore maximum width is 10 * 10 = 100 
     if (width > 100) {width = 100;}
     elem.style.width = width + "%";

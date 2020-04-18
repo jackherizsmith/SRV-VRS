@@ -18,7 +18,7 @@ function signupPostHandler(req, res) {
             bcrypt
             .genSalt(10)
             .then(salt => bcrypt.hash(user.password, salt))
-            .then(hash => createUser({ username, password: hash }))
+            .then(hash => createUser({ username, email: user.email, password: hash }))
             .then(() => {
                 const payload = { username }
                 token = jwt.sign(payload, SECRET)
