@@ -1,12 +1,12 @@
-const db = require('../connection')
-const getUser = require('./getUser');
+const db = require("../connection")
+const getUser = require("./getUser");
 
-function createUser(data) {
-    return getUser(data.username).then(userArray => {
+function createUser(user) {
+    return getUser(user.username).then(userArray => {
       if (userArray.length == 0) {
         return db.query('INSERT INTO users(username, password) VALUES($1, $2)', [
-          data.username,
-          data.password,
+          user.username,
+          user.password,
         ])
       }
     })

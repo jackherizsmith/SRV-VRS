@@ -1,9 +1,9 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const SECRET = process.env.JWT_SECRET;
 
-const checkUser = require('../database/models/checkUser');
-const createUser = require('../database/models/createUser');
+const checkUser = require("../database/models/checkUser");
+const createUser = require("../database/models/createUser");
 
 
 function signupPostHandler(req, res) {
@@ -27,7 +27,7 @@ function signupPostHandler(req, res) {
             })
             .catch(error => {
                 console.log(error)
-                res.status(502).send(`<h1>You failed to sign up</h1>`)
+                res.status(502).send('<h1>You failed to sign up</h1>')
             })
         }
     })

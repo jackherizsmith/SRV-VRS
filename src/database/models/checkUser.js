@@ -1,8 +1,8 @@
-const db = require('../connection');
+const db = require("../connection");
 
 function checkUser(username) {
     return db
-      .query('SELECT * FROM users WHERE username = ($1)', [`${username}`])
+      .query('SELECT * FROM users WHERE username = ($1)', [username])
       .then(result => {
         if (result.rows.length > 0) {
             return true // The user exists

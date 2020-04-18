@@ -1,4 +1,4 @@
-const missingTemplate = require('../templates/missingTemplate');
+const missingTemplate = require("../templates/missingTemplate");
 
 function missingHandler(req, res) {
     const html = missingTemplate(req, res);
