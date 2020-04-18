@@ -7,8 +7,8 @@ const checkAuth = require('./middleware/checkAuth');
 const handleErrors = require('./middleware/handleErrors');
 
 const homeHandler = require('./handlers/homeHandler');
-const addPageHandler = require('./handlers/addPageHandler');
 const addToolHandler = require('./handlers/addToolHandler');
+const addToolPostHandler = require('./handlers/addToolPostHandler');
 const signupHandler = require('./handlers/signupPageHandler');
 const signupPostHandler = require('./handlers/signupPostHandler');
 const signinHandler = require('./handlers/signinPageHandler');
@@ -26,13 +26,15 @@ server.use(logger);
 server.use(getUser);
 
 server.get("/", homeHandler);
-server.get("/add", addPageHandler);
-server.post("/create-tool", addToolHandler);
-server.get("/signin", signinHandler);
-server.post("/signin", signinPostHandler);
 
 server.get("/signup", signupHandler);
 server.post("/signup", signupPostHandler);
+
+server.get("/signin", signinHandler);
+server.post("/signin", signinPostHandler);
+
+server.get("/add", checkAuth, addToolHandler);
+server.post("/add", checkAuth, addToolPostHandler);
 
 server.get("/signout", signoutHandler);
 server.use(express.static("public"));
