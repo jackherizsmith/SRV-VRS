@@ -2,7 +2,7 @@ const form = document.querySelector("form");
 const inputs = form.querySelectorAll("form__input");
 
 const nameInput = form.querySelector("#username");
-const nameRegex = /^[^-\s][a-zA-Z0-9-_. ]{2,}$/;
+const nameRegex = /^[^-\s][a-zA-Z0-9-_. ]{1,}$/;
 
 const emailInput = form.querySelector("#email");
 const emailRegex = (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
@@ -45,15 +45,16 @@ form.addEventListener("submit", event => {
 
 function validate(input, test){
   if (test) {
+    input.style.borderColor = "hsl(106, 100%, 30%)";
     return true;
   } else {
     return false;
   }
 }
 
-nameInput.addEventListener("input", () => {
-  if (nameInput.value.length > 0) {
-    fetch("/check-user/"+nameInput.value)
+function checkUser(userData, input, regex){
+  if (input.value.length > 0 && regex.test(input.value)) {
+    fetch("/check-"+userData+"/"+input.value.trimLeft().trimRight())
     .then (response => response.json())
     .then (user => {
       if (user.isUser) {
