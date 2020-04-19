@@ -53,7 +53,7 @@ function validate(input, test){
 
 function checkUser(userData, input, regex){
   if (input.value.length > 0 && regex.test(input.value)) {
-    fetch("http://localhost:3000/check-"+userData+"/"+input.value.trimLeft().trimRight())
+    fetch("/check-"+userData+"/"+input.value.trimLeft().trimRight())
     .then (response => response.json())
     .then (user => {
       if (user.isUser) {
