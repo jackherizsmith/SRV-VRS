@@ -37,7 +37,9 @@ form.addEventListener("submit", event => {
       if (!valid[key]) {
         input = document.getElementById(key);
         input.style.borderColor = "hsl(0, 100%, 45%)";
-        input.nextElementSibling.textContent = errorMessage[key];
+        if (input.nextElementSibling.textContent.length === "") { 
+          input.nextElementSibling.textContent.length = errorMessage[key];
+        }
       }
     }
   }
