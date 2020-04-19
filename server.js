@@ -7,6 +7,7 @@ const checkAuth = require("./src/middleware/checkAuth");
 const handleErrors = require("./src/middleware/handleErrors");
 
 const homeHandler = require("./src/handlers/homeHandler");
+const checkUser = require("./src/handlers/checkUser");
 const addToolHandler = require("./src/handlers/addToolHandler");
 const addToolPostHandler = require("./src/handlers/addToolPostHandler");
 const signupHandler = require("./src/handlers/signupPageHandler");
@@ -21,11 +22,13 @@ const PORT = process.env.PORT || 3000;
 const server = express();
 
 server.use(cookie());
+server.use(express.json());
 server.use(express.urlencoded({extended : false}));
 server.use(logger);
 server.use(getUser);
 
 server.get("/", homeHandler);
+server.get("/check-user/:username", checkUser);
 
 server.get("/signup", signupHandler);
 server.post("/signup", signupPostHandler);

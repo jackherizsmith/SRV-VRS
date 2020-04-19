@@ -1,6 +1,7 @@
 const db = require("../connection");
 
 function checkUser(username) {
+    console.log("in model", username)
     return db
       .query('SELECT * FROM users WHERE username = ($1)', [username])
       .then(result => {
