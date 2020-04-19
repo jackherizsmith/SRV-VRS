@@ -7,7 +7,8 @@ const checkAuth = require("./src/middleware/checkAuth");
 const handleErrors = require("./src/middleware/handleErrors");
 
 const homeHandler = require("./src/handlers/homeHandler");
-const checkUser = require("./src/handlers/checkUser");
+const checkName = require("./src/handlers/checkUser");
+const checkEmail = require("./src/handlers/checkUserByEmail");
 const addToolHandler = require("./src/handlers/addToolHandler");
 const addToolPostHandler = require("./src/handlers/addToolPostHandler");
 const signupHandler = require("./src/handlers/signupPageHandler");
@@ -28,7 +29,8 @@ server.use(logger);
 server.use(getUser);
 
 server.get("/", homeHandler);
-server.get("/check-user/:username", checkUser);
+server.get("/check-username/:username", checkName);
+server.get("/check-email/:email", checkEmail);
 
 server.get("/signup", signupHandler);
 server.post("/signup", signupPostHandler);
