@@ -40,7 +40,7 @@ form.addEventListener("submit", event => {
 });
 
 function validate(input, test){
-  input.nextElementSibling.textContent = '';
+  input.nextElementSibling.textContent = "";
   if (test) {
     input.style.borderColor = "hsl(106, 100%, 30%)";
     return true;
@@ -51,7 +51,19 @@ function validate(input, test){
 }
 
 nameInput.addEventListener("input", () => {
-  valid.username = validate(nameInput, nameRegex.test(nameInput.value));
+  if (nameInput.value.length > 0) {
+    fetch("http://localhost:3000/check-user/"+nameInput.value)
+    .then (response => response.json())
+    .then (isUser => {
+      if (isUser.isUser) {
+        valid.username = false;
+        nameInput.style.borderColor = "hsl(0, 100%, 45%)";
+        nameInput.nextElementSibling.textContent = "This username is already taken :(";
+      } else {
+        valid.username = validate(nameInput, nameRegex.test(nameInput.value));
+      }
+    })
+  }
 });
 
 emailInput.addEventListener("input", () => {
