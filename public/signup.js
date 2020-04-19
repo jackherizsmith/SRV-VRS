@@ -1,5 +1,5 @@
 const form = document.querySelector("form");
-const inputs = form.querySelectorAll("form__input");
+const inputs = form.querySelectorAll(".form__input");
 
 const nameInput = form.querySelector("#username");
 const nameRegex = /^[^-\s][a-zA-Z0-9-_. ]{1,}$/;
@@ -94,7 +94,7 @@ passwordInput.addEventListener("input", () => {
   let userInputs = [], result;
   inputs.forEach(input => userInputs = userInputs.concat(input.value.split(/[^0-9a-z]/gi))) // grab other user inputs to improve password strength
   
-  result = zxcvbn(passwordInput.value, user_inputs = userInputs.slice(0,-1));
+  result = zxcvbn(passwordInput.value, user_inputs = userInputs.slice(0,-2));
   passStrength(result.guesses_log10);
   valid.password = validate(passwordInput, result.score >= 3);
   
