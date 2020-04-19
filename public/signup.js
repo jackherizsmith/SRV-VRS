@@ -52,7 +52,7 @@ function validate(input, test){
 
 nameInput.addEventListener("input", () => {
   if (nameInput.value.length > 0) {
-    fetch("http://localhost:3000/check-user/"+nameInput.value)
+    fetch("/check-user/"+nameInput.value)
     .then (response => response.json())
     .then (isUser => {
       if (isUser.isUser) {
