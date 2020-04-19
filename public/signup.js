@@ -64,6 +64,7 @@ function checkUser(userData, input, regex){
       } else {
         valid[userData] = true;
         input.style.borderColor = "hsl(106, 100%, 30%)";
+        input.nextElementSibling.textContent = "";
       }
     })
     .catch(console.error)
