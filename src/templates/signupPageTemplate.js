@@ -4,8 +4,8 @@ function signupPageTemplate(req, res) {
   req.nav = /*html*/`<a class="new-page-link" href='/'>Go back home</a>`;
   req.page = /*html*/`    
     <form action="/signup" method="POST" class="form">
-      <label class="form__label" for="username">Name<span aria-hidden=true>*</span></label>
-      <input id="username" class="form__input" type="text" aria-describedby="nameError"  placeholder="e.g. John Smith" name="username" required />
+      <label class="form__label" for="username">Username<span aria-hidden=true>*</span></label>
+      <input id="username" class="form__input" type="text" aria-describedby="nameError"  placeholder="e.g. johnsmith86" name="username" required />
       <div id="nameError" class="form__error"></div>
       
       <label class="form__label" for="email">Email<span aria-hidden="true">*</span></label>

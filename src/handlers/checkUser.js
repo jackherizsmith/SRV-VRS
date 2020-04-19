@@ -1,11 +1,11 @@
 const checkUserModel = require("../database/models/checkUser")
 
 function checkUser(req,res){
-    user = req.params.username;
-    checkUserModel(user)
+    username = req.params.username.toLowerCase();
+    checkUserModel(username)
     .then(isUser => {
-        const check = {isUser : isUser}
-        res.send(check);
+        const user = {isUser : isUser}
+        res.send(user);
     })
 }
 
